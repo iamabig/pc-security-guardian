@@ -1,29 +1,22 @@
-# feat: AI 기반 네트워크 패킷 분석 및 보안 커맨드 센터 구현
+# feat: AI 기반 보안 커맨드 센터 (Stitch UI 일치화 및 Neon Backend)
 
 ## 🎯 주요 변경 사항
-- **Security Command Center**: 실시간 네트워크 패킷 모니터링 및 분석 대시보드 구축.
-- **AI 분석 엔진 통합**: Gemini Pro 및 Groq(Mixtral) 엔진을 지원하며, 사용자가 직접 API 키를 관리하는 보안 구조.
-- **전문가 컨텍스트 (Jules-Level)**: Neon DB에 저장된 보안 전문가 가이드라인을 AI 분석 시 주입하여 고도화된 위협 탐지.
-- **임계치 기반 관리**: 100MB, 500MB, 1GB 단위의 데이터 누적 시 사용자 알림 및 스냅샷 저장 기능.
-- **다차원 보안 지표**: 외부 진입(IDX/Cloud), AI 오동작, 내부 버그, 데이터 오염 등 사용자가 분석 지표를 직접 선택 가능.
+- **UI 일치화 (Stitch Alignment)**: Stitch MCP의 'Aegis Cyber' 디자인 시스템을 반영하여 고해상도 HUD 스타일 UI로 전면 개편했습니다.
+- **실시간 패킷 가시화**: 사용자 요청에 따라 부하 없는 실시간 트래픽 그래프와 100MB/500MB/1GB 임계치 알림 기능을 구현했습니다.
+- **전문가급 AI 분석**: Neon DB에 구축된 'Jules' 전문가 지식 베이스를 활용하여 IDX 외부 진입 및 AI 오동작을 정교하게 분석합니다.
+- **보안 강화**: 사용자 API 키를 클라이언트 측에서만 관리하는 Privacy-first 아키텍처를 적용했습니다.
 
-## 🛠️ 기술적 구현 세부사항
-1. **Neon DB Schema**:
-   - `expert_knowledge`: 보안 위협 패턴 및 전문가 대응 가이드 저장.
-   - `diagnostic_tasks`: 자동화된 도스(DOS) 스타일 명령어 템플릿 관리.
-2. **Frontend Components**:
-   - `PacketMonitor`: 부하 없는 시뮬레이션 및 실제 트래픽 관리 UI.
-   - `MetricSelector`: 분석 우선순위 설정을 위한 커스텀 체크리스트.
-3. **AI Integration**:
-   - `analyzeWithAI`: 프롬프트 엔지니어링을 통해 전문가 지식을 결합한 JSON 분석 결과 반환.
+## 🛠️ 기술적 세부사항
+- **Framework**: Next.js 14 (App Router)
+- **Styling**: TailwindCSS (Custom Design Tokens), Space Grotesk Typography
+- **Database**: Neon Serverless Postgres
+- **AI Engine**: Gemini Pro / Groq Mixtral
+- **Design System**: Stitch Kinetic Sentinel (Glassmorphism & Neon Accents)
 
-## 🚀 사용 가이드
-1. **환경 변수 설정**: `.env.example`을 참고하여 Neon `DATABASE_URL`을 설정합니다.
-2. **API 키 입력**: 웹 화면 상단에서 Gemini 또는 Groq API 키를 입력합니다.
-3. **분석 실행**:
-   - 실시간 모니터링 중 임계치 도달 시 스냅샷을 저장합니다.
-   - 'Run Global Analysis' 버튼을 클릭하여 AI 설명을 확인합니다.
+## 🚀 배포 및 검수
+- **Vercel 호스팅**: Vercel 배포 최적화 설정을 완료했습니다.
+- **UI 검증**: Playwright를 통한 시각적 일치화 및 동작 검증을 마쳤습니다.
+- **데이터 저장**: 스냅샷 저장 기능(100MB/500MB/1GB)이 정상 작동하며 분석용 데이터로 활용됩니다.
 
-## 🛡️ 보안 고려사항
-- 모든 개인 API 키는 클라이언트 측 메모리에서만 관리되며, 서버나 DB에 저장되지 않습니다.
-- 상용화 가능한 수준의 보안 가이드라인이 모든 분석의 기본 컨텍스트로 주입됩니다.
+## 📞 다음 단계
+- Vercel 프로젝트 설정에서 `DATABASE_URL` 환경 변수를 입력하면 즉시 전문가급 보안 서비스를 시작할 수 있습니다.
